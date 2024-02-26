@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {IWeather, IWeatherForDay} from "../interfaces/weatherInterface";
 
-
-const WeatherForDay = ({dayInfo}) => {
-    const [datetime, tempmax, tempmin, icon] = dayInfo
+interface IProps {
+    day: IWeatherForDay
+}
+const WeatherForDay: FC<IProps> = ({day}) => {
+    const {datetime, tempmax, tempmin, icon} = day
     return (
             <div>
                 <div>{datetime}</div>

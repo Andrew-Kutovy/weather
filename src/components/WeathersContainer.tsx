@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import WeatherForDay from "./WeatherForDay";
+import {IWeather} from "../interfaces/weatherInterface";
 
 const WeatherComponent = () => {
-    interface WeatherData {
-        queryCost: number;
-        latitude: number;
-        longitude: number;
-        // Другие поля
-        days: {
-            datetime: string;
-            tempmax: number;
-            tempmin: number;
-            icon: string;
-            // Другие поля
-        }[];
-    }
 
-    const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+
+    const [weatherData, setWeatherData] = useState<IWeather | null>(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -40,7 +29,7 @@ const WeatherComponent = () => {
             {weatherData ? (
                 <div>
                     {weatherData.days.map((day, index) =>
-                        <WeatherForDay key={index} dayInfo={day} />)}
+                        <WeatherForDay key={index} day={day} />)}
                 </div>
             ) : (
                 <p>Loading...</p>
