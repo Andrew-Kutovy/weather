@@ -1,5 +1,5 @@
 export interface IQuery {
-    location: string,
+    city: string,
     date1?: string,
     date2?: string
 }

@@ -10,15 +10,7 @@ const WeatherComponent = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await axios.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Berlin/?unitGroup=metric&include=days&key=W5VEMKECMC3UPYF88ACCNJRJM&contentType=json');
-                if (response.status !== 200) {
-                    throw new Error('Network response was not ok');
-                }
-                setWeatherData(response.data);
-            } catch (error) {
-                console.error('There was a problem with your fetch operation:', error);
-            }
+            await axios.get('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Berlin/?unitGroup=metric&include=days&key=W5VEMKECMC3UPYF88ACCNJRJM&contentType=json');
         };
 
         fetchData();
