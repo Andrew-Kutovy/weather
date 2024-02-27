@@ -7,17 +7,18 @@ const fromTo = (query: IQuery): string => {
     return `${city}/${date1}/${date2}?unitGroup=metric&include=days&key=W5VEMKECMC3UPYF88ACCNJRJM&contentType=json`
 }
 const today = (city: string): string => {
-    return `${city}/today?unitGroup=metric&include=days&key=W5VEMKECMC3UPYF88ACCNJRJM&contentType=json`
+    return `${city}/today`
 }
 const baseTrip = "Berlin"
 const baseURL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
+const endURL = "?unitGroup=metric&include=days&key=W5VEMKECMC3UPYF88ACCNJRJM&contentType=json"
 
 const urls = {
-    default: `${baseTrip}`,
-    today: ``,
+    default: `${baseTrip}${endURL}`,
+    today:(city: string) => `${today(city)}${endURL}`,
     addTrip:(data: IQuery): string => `${data.city}/${data.date1}/${data.date2}`
 }
 
 export {
-    API_KEY, baseURL, urls
+    baseURL, urls
 }
