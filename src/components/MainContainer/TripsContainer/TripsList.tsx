@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import WeatherForDay from "./WeatherForDay";
-import {IWeather} from "../interfaces/weatherInterface";
-import {weatherService} from "../services/weatherService";
+import React, {useEffect, useState} from 'react';
+import {IWeather} from "../../../interfaces/weatherInterface";
+import {weatherService} from "../../../services/weatherService";
+import WeatherForDay from "../WeatherForDay";
 
-const WeatherComponent = () => {
+const TripsList = () => {
 
 
     const [weatherData, setWeatherData] = useState<IWeather | null>(null);
 
     useEffect(() => {
-        weatherService.home().then(({data})=>setWeatherData(data))
+        weatherService.home().then(({data}) => setWeatherData(data))
     }, []);
 
     return (
@@ -23,6 +23,6 @@ const WeatherComponent = () => {
             )}
         </div>
     );
-};
+}
 
-export default WeatherComponent;
+export default TripsList;

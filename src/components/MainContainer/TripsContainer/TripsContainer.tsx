@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TripsList = () => {
+const TripsContainer = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const TripsList = () => {
     );
 };
 
-export default TripsList;
+export default TripsContainer;
