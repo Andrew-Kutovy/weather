@@ -1,22 +1,19 @@
 import React from 'react';
 import style from "./Main.module.css";
 import TripsContainer from "./TripsContainer/TripsContainer";
+import Header from "./Header";
 
 const Main = () => {
     return (
         <>
-            <div className={style.Main}>
-                <header>
-                    <p className={style.name}>Weather <b>Forecast</b></p>
-                    <input type="search" placeholder={"Search your trip"}/>
-                </header>
-                <TripsContainer/>
-                <div className={style.weather}>
-                    Week
-                </div>
+            <div>
+                <Header />
             </div>
             <div>
-                
+                <TripsContainer/>
+            </div>
+            <div className={style.weather}>
+                Week
             </div>
         </>
 

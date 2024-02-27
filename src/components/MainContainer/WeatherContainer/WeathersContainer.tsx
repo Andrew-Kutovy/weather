@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import style from './Main.module.css'
+import style from '../Main.module.css'
 
 const WeatherComponent = () => {
 

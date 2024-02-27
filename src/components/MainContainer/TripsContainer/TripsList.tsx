@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {IWeather} from "../../../interfaces/weatherInterface";
 import {weatherService} from "../../../services/weatherService";
-import WeatherForDay from "../WeatherForDay";
+import WeatherForDay from "../WeatherContainer/WeatherForDay";
 
 const TripsList = () => {
 

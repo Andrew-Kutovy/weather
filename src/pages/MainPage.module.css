@@ -1,0 +1,16 @@
+/* MainPage.css */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.main {
+    width: 66.66%; /* 2/3 ширины экрана */
+    background-color: #f0f0f0; /* Цвет фона для Main */
+}
+
+.rightSide {
+    width: 33.33%; /* 1/3 ширины экрана */
+    background-color: blue; /* Синий фон для RightSide */
+    color: white; /* Белый цвет текста для контраста */
+}

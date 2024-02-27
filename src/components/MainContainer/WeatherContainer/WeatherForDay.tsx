@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {IWeather, IWeatherForDay} from "../../interfaces/weatherInterface";
+import {IWeather, IWeatherForDay} from "../../../interfaces/weatherInterface";
 
 interface IProps {
     day: IWeatherForDay
