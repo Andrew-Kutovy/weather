@@ -8,16 +8,17 @@ import style from "./TripContainer.module.css"
 
 interface IProps {
     trips: ITrip[];
+    onSelectTrip: (trip: ITrip) => void
 }
-const TripList: FC<IProps> = ({trips}) => {
+const TripList: FC<IProps> = ({trips, onSelectTrip}) => {
 
 
     return (
         <div className={style.List}>
             {trips.map((trip, index) => (
-                <div key={index} className={style.Item}>
+                <div key={index} className={style.Item} onClick={() => onSelectTrip(trip)}>
                     <TripItem
-                        photo={trip.photo}
+                        photo={trip.photo || ''} // Добавляем проверку на undefined и используем пустую строку вместо undefined
                         city={trip.city}
                         startDate={trip.startDate}
                         endDate={trip.endDate}

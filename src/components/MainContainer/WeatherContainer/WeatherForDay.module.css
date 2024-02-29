@@ -12,3 +12,10 @@
     height: 50px; /* Высота иконки */
     margin-bottom: 10px; /* Отступ снизу между элементами */
 }
+.Day {
+    display: flex; /* Расположение элементов в строку */
+    flex-direction: row; /* Направление элементов по горизонтали */
+    align-items: center; /* Выравнивание по центру по вертикали */
+    padding: 10px;
+    box-sizing: border-box;
+}

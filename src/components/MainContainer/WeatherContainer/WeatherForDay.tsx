@@ -10,8 +10,7 @@ const WeatherForDay: FC<IProps> = ({day}) => {
     return (
         <div>
             <div>{datetime}</div>
-            <div>Max temp: {tempmax}</div>
-            <div>Min temp: {tempmin}</div>
+            <div>{tempmax}/{tempmin}</div>
             <img src={icon} alt="Weather icon" className={style.Icon}/>
         </div>
     );

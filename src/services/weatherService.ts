@@ -5,7 +5,6 @@ import {IRes} from "../types/responseType";
 import {IQuery} from "../interfaces/queryInterface";
 
 const weatherService = {
-    home: ():IRes<IWeather> => apiService.get(urls.default),
     addNew: (city: string, startDate: string, endDate: string): IRes<IWeather> => apiService.get(urls.addTrip(city, startDate, endDate)),
     today: (city: string): IRes<IWeather> => apiService.get(urls.today(city))
 }
