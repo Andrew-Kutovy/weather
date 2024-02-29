@@ -1,0 +1,14 @@
+/* WeatherForDay.module.css */
+.Container {
+    display: flex; /* Расположение элементов в строку */
+    flex-direction: row; /* Направление элементов по вертикали */
+    align-items: center; /* Выравнивание по центру по горизонтали */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.Icon {
+    width: 50px; /* Ширина иконки */
+    height: 50px; /* Высота иконки */
+    margin-bottom: 10px; /* Отступ снизу между элементами */
+}

@@ -1,11 +1,14 @@
 import React from 'react';
+import {useForm} from "react-hook-form";
 
 const Modal = () => {
+    const {register, reset, handleSubmit} = useForm()
     return (
         <form>
-            <input type="text"/>
-            <input type="text"/>
-            <input type="text"/>
+            <p>Create Trip</p><br/>
+            <input type="text" placeholder={''} {...register('')}/>
+            <input type="text" placeholder={''} {...register('')}/>
+            <input type="text" placeholder={''} {...register('')}/>
         </form>
     );
 };

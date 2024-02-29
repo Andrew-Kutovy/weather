@@ -1,7 +1,16 @@
-.Main {
-
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.name {
-    font-size: 25px;
+.Main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.Header, .Trips, .Weeks {
+    flex: 1;
+    overflow-y: auto;
 }

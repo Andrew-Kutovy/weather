@@ -1,0 +1,27 @@
+/* TripContainer.module.css */
+.Container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 10px; /* Добавляем отступ снизу, чтобы кнопка не прилипала к последнему элементу списка */
+}
+
+.List {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.Add {
+    flex: 0 0 auto;
+    width: 33.33%; /* Кнопка занимает одну треть ширины контейнера */
+    background-color: #f0f0f0; /* Цвет кнопки */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.Add:hover {
+    background-color: #e0e0e0; /* Цвет кнопки при наведении */
+}

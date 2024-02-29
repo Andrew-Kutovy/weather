@@ -1,0 +1,25 @@
+/* TripList.module.css */
+.List {
+    display: flex;
+    flex-wrap: nowrap; /* Запрет переноса элементов на новую строку */
+    overflow-x: auto; /* Горизонтальная прокрутка при необходимости */
+    padding-right: 10px; /* Добавляем правый отступ для кнопки */
+}
+
+.Item {
+    flex: 0 0 calc(33.33% - 10px); /* Каждый элемент занимает треть ширины контейнера с отступом между ними */
+    margin-right: 10px; /* Отступ между элементами */
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.ButtonContainer {
+    flex: 1; /* Кнопка занимает все доступное пространство, чтобы быть прижатой к правому краю */
+    display: flex;
+    justify-content: flex-end; /* Выравнивание кнопки по правому краю */
+}
+
+.AddButton {
+    padding: 10px;
+    box-sizing: border-box;
+}
