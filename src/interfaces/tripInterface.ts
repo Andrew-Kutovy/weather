@@ -1,5 +1,5 @@
 export interface ITrip {
-    photo?: string;
+    photo?: any;
     city: string;
     startDate: string;
     endDate: string;

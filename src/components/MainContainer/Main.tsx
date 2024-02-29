@@ -19,7 +19,6 @@ const Main = () => {
             <div className={style.Weeks}>
                 <WeathersContainer/>
             </div>
-
         </div>
     );
 };

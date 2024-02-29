@@ -10,7 +10,7 @@ interface IProps {
 const TripItem: FC<IProps> = ({photo, city, startDate, endDate}) => {
     return (
         <div>
-            <img src={photo} alt={city}/>
+            <img src={`/images/cities/${city}.jfif`} alt={city}/>
             <div>{city}</div>
             <div>{startDate} - {endDate}</div>
         </div>
