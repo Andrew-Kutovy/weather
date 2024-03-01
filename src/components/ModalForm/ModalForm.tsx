@@ -4,23 +4,26 @@ import {ITrip} from "../../interfaces/tripInterface";
 import {weatherService} from "../../services/weatherService";
 import {cities} from "../../constants/cities";
 import {useTripContext} from "../../providers/tripProvider";
+import {useModalContext} from "../../providers/modalProvider";
 
-interface IProps extends PropsWithChildren {
-    setTrigger: Dispatch<SetStateAction<boolean>>;
-   // onSubmit: (trip: ITrip) => void;, onSubmit
-}
-const ModalForm : FC<IProps> = ({setTrigger}) => {
+// interface IProps extends PropsWithChildren {
+//     setTrigger: Dispatch<SetStateAction<boolean>>;{setTrigger}
+//    // onSubmit: (trip: ITrip) => void;, onSubmit
+// }
+const ModalForm : FC = () => {
     const {register, reset, handleSubmit, setValue} = useForm<ITrip>()
     const { addTrip } = useTripContext();
+    const {closeModal} = useModalContext()
 
     const create:SubmitHandler<ITrip> = async (trip) => {
         await weatherService.addNew(trip.city, trip.startDate, trip.endDate)
         addTrip(trip);
-        setTrigger(prev => !prev)
         reset()
+        closeModal()
     }
     const cancel = () => {
-        setTrigger(prev => !prev);
+        reset()
+        closeModal()
     }
 
     return (

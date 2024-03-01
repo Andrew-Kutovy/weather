@@ -4,25 +4,38 @@ import style from "./TripContainer.module.css"
 import {ITrip} from "../../../interfaces/tripInterface";
 import WeatherComponent from "../WeatherContainer/WeatherComponent";
 import {useTripContext} from "../../../providers/tripProvider";
+import ModalForm from "../../ModalForm/ModalForm";
+import {ModalProvider, useModalContext} from "../../../providers/modalProvider";
 
 
 const TripsContainer = () => {
-    const { trips, addTrip } = useTripContext();
-    const [selectedTrip, setSelectedTrip] = useState<ITrip | null>(null);
+    const { trips, selectedTrip, selectTrip} = useTripContext();
+    // const [selectedTrip, setSelectedTrip] = useState<ITrip | null>(null);
+    const { isModalOpen, openModal } = useModalContext();
 
     const handleSelectTrip = (trip: ITrip) => {
-        setSelectedTrip(trip);
+        selectTrip(trip);
     };
+
+
+    const closeModal = () => {
+        //
+    };
+
 
     return (
         <>
-            <div className={style.Container}>
-                <TripList trips={trips} onSelectTrip={handleSelectTrip} />
-                <button className={style.Add} onClick={() => addTrip({ city: 'default', startDate: 'default', endDate: 'default' })}>Add Trip</button>
-            </div>
-            {selectedTrip && (
-                <WeatherComponent city={selectedTrip.city} startDate={selectedTrip.startDate} endDate={selectedTrip.endDate} />
-            )}
+            <ModalProvider>
+                <div className={style.Container}>
+                    <TripList trips={trips} onSelectTrip={handleSelectTrip} />
+                    <button className={style.Add} onClick={openModal}>Add Trip</button>
+                </div>
+                {selectedTrip && (
+                    <WeatherComponent city={selectedTrip.city} startDate={selectedTrip.startDate} endDate={selectedTrip.endDate} />
+                )}
+                {/*{isModalOpen && <ModalForm />}*/}
+            </ModalProvider>
+
         </>
     );
 };

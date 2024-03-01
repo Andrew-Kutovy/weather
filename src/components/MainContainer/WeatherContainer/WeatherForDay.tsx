@@ -6,11 +6,11 @@ interface IProps {
     day: IWeatherForDay
 }
 const WeatherForDay: FC<IProps> = ({day}) => {
-    const {datetime, tempmax, tempmin, icon} = day
+    const {datetime, temp, icon} = day
     return (
         <div>
             <div>{datetime}</div>
-            <div>{tempmax}/{tempmin}</div>
+            <div>{temp}</div>
             <img src={icon} alt="Weather icon" className={style.Icon}/>
         </div>
     );
