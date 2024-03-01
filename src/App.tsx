@@ -1,10 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import WeathersContainer from "./components/MainContainer/WeatherContainer/WeathersContainer";
 import ModalForm from "./components/ModalForm/ModalForm";
-import Main from "./components/MainContainer/Main";
 import MainPage from "./pages/MainPage";
-import {weatherService} from "./services/weatherService";
-import {IWeather} from "./interfaces/weatherInterface";
+import {TripProvider} from "./providers/tripProvider";
 
 function App() {
     const [trigger, setTrigger] =  useState<boolean>(false)
@@ -18,12 +15,15 @@ function App() {
 
     return (
         <>
-            <button onClick={() => setTrigger(true)}>Open Modal</button>
-            {trigger ? (
-                <ModalForm setTrigger={setTrigger} />
-            ) : (
-                <MainPage/>
-            )}
+            <TripProvider>
+                <button onClick={() => setTrigger(true)}>Open Modal</button>
+                {trigger ? (
+                    <ModalForm setTrigger={setTrigger} />
+                ) : (
+                    <MainPage/>
+                )}
+            </TripProvider>
+
         </>
 
     );

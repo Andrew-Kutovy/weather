@@ -3,6 +3,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {ITrip} from "../../interfaces/tripInterface";
 import {weatherService} from "../../services/weatherService";
 import {cities} from "../../constants/cities";
+import {useTripContext} from "../../providers/tripProvider";
 
 interface IProps extends PropsWithChildren {
     setTrigger: Dispatch<SetStateAction<boolean>>;
@@ -10,9 +11,11 @@ interface IProps extends PropsWithChildren {
 }
 const ModalForm : FC<IProps> = ({setTrigger}) => {
     const {register, reset, handleSubmit, setValue} = useForm<ITrip>()
+    const { addTrip } = useTripContext();
 
     const create:SubmitHandler<ITrip> = async (trip) => {
         await weatherService.addNew(trip.city, trip.startDate, trip.endDate)
+        addTrip(trip);
         setTrigger(prev => !prev)
         reset()
     }
