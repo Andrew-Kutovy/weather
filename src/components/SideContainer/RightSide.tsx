@@ -3,6 +3,7 @@ import {useTripContext} from "../../providers/tripProvider";
 import {weatherService} from "../../services/weatherService";
 import {IWeather} from "../../interfaces/weatherInterface";
 import WeatherToday from "./WeatherToday";
+import CountdownTimer from "./CountdownTimer";
 
 const RightSide = () => {
     const {selectedTrip} = useTripContext()
@@ -20,6 +21,9 @@ const RightSide = () => {
             {selectedTrip && <p>Selected city: {selectedTrip.city}</p>}
             {day && (
                 <WeatherToday day={day}/>
+            )}
+            {selectedTrip && (
+                <CountdownTimer startDate={selectedTrip.startDate.toString()} />
             )}
         </div>
     );
