@@ -4,8 +4,6 @@ const CountdownTimer = ({ startDate }: { startDate: string }) => {
     const [countdown, setCountdown] = useState<{ days: number, hours: number, minutes: number, seconds: number } | undefined>()
     const countdownIntervalRef = useRef<NodeJS.Timeout>();
 
-    console.log(startDate);
-    console.log(countdown);
 
     useEffect(() => {
         const targetDate = new Date(startDate).getTime();

@@ -11,39 +11,14 @@ function App() {
     const [trip, setTrip] = useState<boolean>(false)
     const { isModalOpen, openModal } = useModalContext();
 
-
-    useEffect(() => {
-        if (isModalOpen) {
-            // Показать модальное окно
-            console.log('Модальное окно открыто');
-        } else {
-            // Скрыть модальное окно
-            console.log('Модальное окно закрыто');
-        }
-    }, [isModalOpen]); // Зависимость для useEffect
-
     return (
         <>
             <TripProvider>
                     {isModalOpen ? <ModalForm /> : <MainPage />}
-                    {/*<button onClick={() => setTrigger(true)}>Open Modal</button>*/}
-                    {/*{trigger ? (*/}
-                    {/*    <ModalForm setTrigger={setTrigger} />*/}
-                    {/*) : (*/}
-                    {/*)}*/}
             </TripProvider>
         </>
 
     );
-}
-function AppContent() {
-    const { isModalOpen } = useModalContext();
-
-    useEffect(() => {
-        // Здесь можно добавить любую логику, связанную с состоянием модального окна
-    }, [isModalOpen]);
-
-    return isModalOpen ? <ModalForm /> : <MainPage />;
 }
 
 
