@@ -7,11 +7,13 @@ interface IProps {
 }
 const WeatherForDay: FC<IProps> = ({day}) => {
     const {datetime, temp, icon} = day
+    const imagePath = `/images/weather/${icon}.png`;
+
     return (
         <div>
             <div>{datetime}</div>
             <div>{temp}</div>
-            <img src={icon} alt="Weather icon" className={style.Icon}/>
+            <img src={imagePath} alt={icon} className={style.Icon}/>
         </div>
     );
 };

@@ -1,30 +1,42 @@
-import React, {Dispatch, FC, PropsWithChildren, SetStateAction} from 'react';
-import {SubmitHandler, useForm} from "react-hook-form";
-import {ITrip} from "../../interfaces/tripInterface";
-import {weatherService} from "../../services/weatherService";
-import {cities} from "../../constants/cities";
-import {useTripContext} from "../../providers/tripProvider";
-import {useModalContext} from "../../providers/modalProvider";
+import React, { FC, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { ITrip } from '../../interfaces/tripInterface';
+import { weatherService } from '../../services/weatherService';
+import { cities } from '../../constants/cities';
+import { useTripContext } from '../../providers/tripProvider';
+import { useModalContext } from '../../providers/modalProvider';
 
-// interface IProps extends PropsWithChildren {
-//     setTrigger: Dispatch<SetStateAction<boolean>>;{setTrigger}
-//    // onSubmit: (trip: ITrip) => void;, onSubmit
-// }
-const ModalForm : FC = () => {
-    const {register, reset, handleSubmit, setValue} = useForm<ITrip>()
+const ModalForm: FC = () => {
+    const { register, reset, handleSubmit, setValue, watch } = useForm<ITrip>();
     const { addTrip } = useTripContext();
-    const {closeModal} = useModalContext()
+    const { closeModal } = useModalContext();
+    const [maxEndDate, setMaxEndDate] = useState<string>('');
 
-    const create:SubmitHandler<ITrip> = async (trip) => {
-        await weatherService.addNew(trip.city, trip.startDate, trip.endDate)
+    const startDate = watch('startDate');
+
+    const create = async (trip: ITrip) => {
+        await weatherService.addNew(trip.city, trip.startDate, trip.endDate);
         addTrip(trip);
-        reset()
-        closeModal()
-    }
+        reset();
+        closeModal();
+    };
+
     const cancel = () => {
-        reset()
-        closeModal()
-    }
+        reset();
+        closeModal();
+    };
+
+    const updateMaxEndDate = (startDate: string) => {
+        const newMaxEndDate = new Date(startDate);
+        newMaxEndDate.setDate(newMaxEndDate.getDate() + 15);
+        setMaxEndDate(newMaxEndDate.toISOString().split('T')[0]);
+    };
+
+    // Вычисляем минимальную и максимальную даты для выбора
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1); // Завтрашний день
+    const maxDate = new Date(tomorrow);
+    maxDate.setDate(maxDate.getDate() + 15); // Дата через 15 дней от завтрашней
 
     return (
         <form onSubmit={handleSubmit(create)}>
@@ -34,8 +46,8 @@ const ModalForm : FC = () => {
                     <option key={city.name} value={city.name}>{city.name}</option>
                 ))}
             </select>
-            <input type="date" placeholder={'startDate'} {...register('startDate')}/>
-            <input type="date" placeholder={'endDate'} {...register('endDate')}/>
+            <input type="date" placeholder={'startDate'} {...register('startDate')} min={tomorrow.toISOString().split('T')[0]} max={maxDate.toISOString().split('T')[0]} onChange={(e) => { setValue('startDate', e.target.value); updateMaxEndDate(e.target.value); }} />
+            <input type="date" placeholder={'endDate'} {...register('endDate')} min={startDate} max={maxEndDate} />
 
             <button>create</button>
             <button type="button" onClick={cancel}>Cancel</button>

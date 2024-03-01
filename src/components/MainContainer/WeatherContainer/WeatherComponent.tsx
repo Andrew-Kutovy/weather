@@ -2,18 +2,23 @@ import React, {FC, useEffect, useState} from 'react';
 import {weatherService} from "../../../services/weatherService";
 import WeatherForDay from "./WeatherForDay";
 import {IWeather} from "../../../interfaces/weatherInterface";
+import {useTripContext} from "../../../providers/tripProvider";
 
-interface IProps {
-    city: string;
-    startDate: string;
-    endDate: string
-}
-const WeatherComponent: FC<IProps> = ({ city, startDate, endDate }) => {
+// interface IProps {
+//     city: string;
+//     startDate: string;
+//     endDate: string
+// }: FC<IProps>
+const WeatherComponent = () => {
     const [weatherData, setWeatherData] = useState<IWeather | null>(null);
 
+    const {selectedTrip} = useTripContext()
+
     useEffect(() => {
-        weatherService.addNew(city, startDate, endDate).then(({ data }) => setWeatherData(data));
-    }, [city, startDate, endDate]);
+        if (selectedTrip) {
+            weatherService.addNew(selectedTrip.city, selectedTrip.startDate, selectedTrip.endDate).then(({ data }) => setWeatherData(data));
+        }
+    }, [selectedTrip]);
 
     return (
         <>
